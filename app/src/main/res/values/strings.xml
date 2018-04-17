@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RPN-Calculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="inputText">0</string>
+    <string name="optText">OPT</string>
+    <string name="ACText">AC</string>
+</resources>
