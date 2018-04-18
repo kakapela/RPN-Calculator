@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    Stack stack = new Stack();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         final TextView maininput = (TextView)findViewById(R.id.mainInput);
+        final TextView stackInput = findViewById(R.id.stackInput);
+        final TextView firstStackInput = findViewById(R.id.firstStackInput);
         Button button0 = (Button)findViewById(R.id.button0);
         Button button1 = (Button)findViewById(R.id.button1);
         Button button2 = (Button)findViewById(R.id.button2);
@@ -34,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
         Button button7 = (Button)findViewById(R.id.button7);
         Button button8 = (Button)findViewById(R.id.button8);
         Button button9 = (Button)findViewById(R.id.button9);
+        Button dotButton = (Button)findViewById(R.id.dotButton);
         Button acButton = findViewById(R.id.ACButton);
         Button backButton = findViewById(R.id.backButton);
+        Button enterButton = findViewById(R.id.enterButton);
+        Button additionButton = findViewById(R.id.additionButton);
 
 
         //event handler and inside him callback method
@@ -154,11 +160,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        dotButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        int inputCounter = maininput.getText().length();
+                        //append dot only if mainINPUT is not empty -> we can not type . at the beginnig
+                        //append dot until limit 10 numbers -> because UI can crashed
+                        if(!(maininput.getText().toString().matches("")) && inputCounter<10)
+                            maininput.append(".");
+                    }
+                }
+        );
         acButton.setOnClickListener(
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                             maininput.setText("0");
+                            stack.clear();
+                            stackInput.setText("STACK: "+stack.size());
+                            firstStackInput.setText("");
                     }
                 }
         );
@@ -168,10 +189,41 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         //if you have something to remove than remove from input last character (character from the right side),
-                        //else if you dont have anything to remove just set 0
+                        //else if you dont have anything to remove just set null
                         if(maininput.getText().length()>=1)
                             maininput.setText(maininput.getText().toString().substring(0,maininput.getText().toString().length()-1));
-                        else maininput.setText("0");
+                        else maininput.setText("");
+                    }
+                }
+        );
+
+        enterButton.setOnClickListener(
+               new Button.OnClickListener(){
+                   @Override
+                   public void onClick(View v) {
+                       //first parse input to double than push our result to the stack
+                       //then add last element on the stack to the firstStackInput
+                       double result = Double.parseDouble(maininput.getText().toString());
+                       stack.push(result);
+                       stackInput.setText("STACK: "+stack.size());
+
+                       //add to the screen last element of our stack
+                       String parseNumber = String.valueOf(stack.peek());
+                       firstStackInput.setText(parseNumber);
+                       maininput.setText(parseNumber);
+
+                   }
+               }
+        );
+
+        additionButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+
+                       double result= stack.add();
+                       String parseNumber = String.valueOf(result);
+                       maininput.setText(parseNumber);
                     }
                 }
         );

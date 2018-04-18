@@ -15,6 +15,12 @@ public class Stack {
     public void clear() {
         stack.clear();
     }
+    public int size(){
+        return stack.size();
+    }
+    public double peek(){
+        return stack.peek();
+    }
 
     //first pop two last numbers from stack and than add them
     public double add() {
