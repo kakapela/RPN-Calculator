@@ -5,19 +5,24 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         final TextView maininput = (TextView)findViewById(R.id.mainInput);
         Button button0 = (Button)findViewById(R.id.button0);
         Button button1 = (Button)findViewById(R.id.button1);
@@ -30,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         Button button8 = (Button)findViewById(R.id.button8);
         Button button9 = (Button)findViewById(R.id.button9);
         Button acButton = findViewById(R.id.ACButton);
+        Button backButton = findViewById(R.id.backButton);
+
 
         //event handler and inside him callback method
         button0.setOnClickListener(
@@ -40,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         //append zero only if mainINPUT is not empty -> we can not type 0 at the beginnig
                         //append zero until limit 10 numbers -> because UI can crashed
                         if(!(maininput.getText().toString().matches("")) && inputCounter<10)
-                        maininput.append("0");
+                            maininput.append("0");
                     }
                 }
         );
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         int inputCounter = maininput.getText().length();
 
                         if(inputCounter<10)
-                        maininput.append("1");
+                            maininput.append("1");
                     }
                 }
         );
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("2");
+                            maininput.append("2");
                     }
                 }
         );
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("3");
+                            maininput.append("3");
                     }
                 }
         );
@@ -82,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("4");
+                            maininput.append("4");
                     }
                 }
         );
@@ -92,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("5");
+                            maininput.append("5");
                     }
                 }
         );
@@ -102,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("6");
+                            maininput.append("6");
                     }
                 }
         );
@@ -112,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("6");
+                            maininput.append("6");
                     }
                 }
         );
@@ -123,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("7");
+                            maininput.append("7");
                     }
                 }
         );
@@ -133,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("8");
+                            maininput.append("8");
                     }
                 }
         );
@@ -143,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
                         if(inputCounter<10)
-                        maininput.append("9");
+                            maininput.append("9");
                     }
                 }
         );
@@ -157,6 +164,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        backButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        int inputCounter = maininput.getText().length();
+
+                        //if it less than 10 numbers remove first character
+                        if(inputCounter<10)
+                            maininput.setText(maininput.getText().toString().substring(1));
+                    }
+                }
+        );
+
+
+
+
     }
 
     @Override
