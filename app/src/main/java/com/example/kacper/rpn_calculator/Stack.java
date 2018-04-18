@@ -84,7 +84,9 @@ public class Stack {
 
             return result;
         } else {
+            Double x=stack.pop();
             clear();
+            return x;
         }
     }
 }

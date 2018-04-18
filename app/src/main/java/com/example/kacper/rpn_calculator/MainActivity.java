@@ -158,8 +158,6 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10)
                             maininput.setText("0");
                     }
                 }
@@ -168,11 +166,12 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
 
-                        //if it less than 10 numbers remove first character
-                        if(inputCounter<10)
-                            maininput.setText(maininput.getText().toString().substring(1));
+                        //if you have something to remove than remove from input last character (character from the right side),
+                        //else if you dont have anything to remove just set 0
+                        if(maininput.getText().length()>=1)
+                            maininput.setText(maininput.getText().toString().substring(0,maininput.getText().toString().length()-1));
+                        else maininput.setText("0");
                     }
                 }
         );
