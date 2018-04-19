@@ -6,6 +6,10 @@ public class Stack {
 
     //our stack will store float numbers
     private ArrayDeque<Double> stack = new ArrayDeque<>();
+    private Double x;
+    private  Double y;
+    private Double secondLastElement;
+    boolean stackIsOver=false;
 
     //push number to stack
     public void push(double number) {
@@ -22,19 +26,51 @@ public class Stack {
         return stack.peek();
     }
 
+    public Double getLastPopElement() {
+        return y;
+    }
+
+    public Double getY() {
+        return x;
+    }
+
+    public Double getSecondLastElement() {
+        return secondLastElement;
+    }
+
+    public boolean isStackIsOver() {
+        return stackIsOver;
+    }
+
     //first pop two last numbers from stack and than add them
     public double add() {
-        //add only if we have two numbers in stack
+        //add only if we have two or more numbers in stack
+        Double result;
         if (stack.size() >= 2) {
-            Double x = stack.pop();
-            Double y = stack.pop();
+            x = stack.pop(); //input
+            y = stack.pop(); //last element which was added by enter button
 
-            Double result = y + x;
+            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
+            if( !(stack.size()==0) ){
+                secondLastElement= stack.pop();
+                stackIsOver=false;
+                stack.push(secondLastElement);
+
+                result = y + x;
+                return result;
+
+            }
+            else {
+              //  secondLastElement = Double.valueOf(0);
+                stackIsOver = true;
+                clear();
+                result = y + x;
+                return result;
+            }
 
             //push result to stack - STACK 1
-            stack.push(result);
+            //stack.push(result);
 
-            return result;
         } else {
             Double x = stack.pop();
             clear();
