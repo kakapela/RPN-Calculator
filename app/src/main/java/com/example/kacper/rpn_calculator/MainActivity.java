@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
         final Button enterButton = findViewById(R.id.enterButton);
         Button additionButton = findViewById(R.id.additionButton);
+        Button subtractButton = findViewById(R.id.subtractButton);
 
 
         //event handler and inside him callback method
@@ -401,6 +402,79 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+
+        subtractButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        String parseNumber;
+
+                        //we have to stack number from mainInput
+                        //
+
+                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
+                        if(stack.size()==0) {
+                            firstStackInput.setText("");
+
+                        }
+                        //ELSE DO ADDITION
+                        else {
+                            //pop two elements from stack,add them,parse and set to inputs
+
+                            double x = Double.parseDouble(maininput.getText().toString());
+                            stack.push(x);
+
+                            double result = stack.sub();
+                            //check if result is integer
+                            if ((result % 1) == 0) {
+                                int resultInt = (int) result;
+                                parseNumber = String.valueOf(resultInt);
+                                maininput.setText(parseNumber);
+                                stackInput.setText("STACK: " + (stack.size()+1));
+                            } else {
+                                parseNumber = String.valueOf(result);
+                                maininput.setText(parseNumber);
+                                stackInput.setText("STACK: " + (stack.size()+1));
+                            }
+                            //PUTTING LAST POP ELEMENT TO STACK2 ROW
+
+                            //we have to get last pop element from stack and put him into the screen
+                            //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
+                            if (stack.size() == 0) {
+                                firstStackInput.setText("");
+                            } else {
+
+                                //we get lastPopElement, check if its integer and put it to inputs
+                                double lastPopElement = stack.getSecondLastElement();
+                                if((lastPopElement %1)==0)
+                                {
+                                    if(stack.isStackIsOver()){
+                                        firstStackInput.setText("");
+                                        stackInput.setText("STACK: 1");
+                                    }
+                                    else {
+                                        int tmp = (int) lastPopElement;
+                                        parseNumber = String.valueOf(tmp);
+                                        firstStackInput.setText(parseNumber);
+                                    }
+
+                                }
+                                else {
+                                    if(stack.isStackIsOver()){
+                                        firstStackInput.setText("");
+                                        stackInput.setText("STACK: 1");
+                                    }
+                                    else {
+                                        parseNumber = String.valueOf(lastPopElement);
+                                        firstStackInput.setText(parseNumber);
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+        );
 
 
 
