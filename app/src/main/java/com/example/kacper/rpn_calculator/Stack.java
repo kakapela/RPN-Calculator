@@ -174,7 +174,7 @@ public class Stack {
                 //  secondLastElement = Double.valueOf(0);
                 stackIsOver = true;
                 clear();
-                result = y /x;
+                result = y / x;
                 return result;
             }
 
