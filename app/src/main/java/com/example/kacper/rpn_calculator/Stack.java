@@ -80,7 +80,7 @@ public class Stack {
     }
 
     //subtract two numbers, first pop from stack then compute result
-    public double sub() throws ArithmeticException {
+    public double sub() {
         //add only if we have two or more numbers in stack
         Double result;
         if (stack.size() >= 2) {
@@ -115,38 +115,78 @@ public class Stack {
 
         }
     }
-
-    public double mal() {
+    public double mul() {
+        //add only if we have two or more numbers in stack
+        Double result;
         if (stack.size() >= 2) {
-            Double x = stack.pop();
-            Double y = stack.pop();
+            x = stack.pop(); //input
+            y = stack.pop(); //last element which was added by enter button
 
-            Double result = y * x;
+            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
+            if( !(stack.size()==0) ){
+                secondLastElement= stack.pop();
+                stackIsOver=false;
+                stack.push(secondLastElement);
 
-            stack.push(result);
+                result = y *x;
+                return result;
 
-            return result;
+            }
+            else {
+                //  secondLastElement = Double.valueOf(0);
+                stackIsOver = true;
+                clear();
+                result = y * x;
+                return result;
+            }
+
+            //push result to stack - STACK 1
+            //stack.push(result);
+
         } else {
-            Double x=stack.pop();
+            Double x = stack.pop();
             clear();
             return x;
+
         }
     }
 
-    public double div()  {
+
+
+    public double div() {
+        //add only if we have two or more numbers in stack
+        Double result;
         if (stack.size() >= 2) {
-            Double x = stack.pop();
-            Double y = stack.pop();
+            x = stack.pop(); //input
+            y = stack.pop(); //last element which was added by enter button
 
-            Double result = y / x;
+            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
+            if( !(stack.size()==0) ){
+                secondLastElement= stack.pop();
+                stackIsOver=false;
+                stack.push(secondLastElement);
 
-            stack.push(result);
+                result = y /x;
+                return result;
 
-            return result;
+            }
+            else {
+                //  secondLastElement = Double.valueOf(0);
+                stackIsOver = true;
+                clear();
+                result = y /x;
+                return result;
+            }
+
+            //push result to stack - STACK 1
+            //stack.push(result);
+
         } else {
-            Double x=stack.pop();
+            Double x = stack.pop();
             clear();
             return x;
+
         }
     }
+
 }
