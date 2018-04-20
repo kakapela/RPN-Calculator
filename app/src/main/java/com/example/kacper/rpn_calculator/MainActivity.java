@@ -1,5 +1,6 @@
 package com.example.kacper.rpn_calculator;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,11 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     Stack stack = new Stack();
 
@@ -46,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.four_rows_display);
+
         final TextView maininput = (TextView)findViewById(R.id.mainInput);
         final TextView stackInput = findViewById(R.id.stackInput);
         final TextView firstStackInput = findViewById(R.id.firstStackInput);
@@ -62,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
         Button button9 = (Button)findViewById(R.id.button9);
         Button dotButton = (Button)findViewById(R.id.dotButton);
         Button acButton = findViewById(R.id.ACButton);
-        Button backButton = findViewById(R.id.backButton);
+        ImageButton backButton = findViewById(R.id.backButton);
         final Button enterButton = findViewById(R.id.enterButton);
         Button additionButton = findViewById(R.id.additionButton);
         Button subtractButton = findViewById(R.id.subtractButton);
         Button multiplyButton = findViewById(R.id.multiplyButton);
         Button divideButton = findViewById(R.id.divideButton);
+
 
 
 
