@@ -15,6 +15,9 @@ public class Stack {
     public void push(double number) {
         stack.push(number);
     }
+    public double pop() {
+        return stack.pop();
+    }
 //clear stack
     public void clear() {
         stack.clear();
@@ -188,5 +191,41 @@ public class Stack {
 
         }
     }
+    public double pow() {
+        //add only if we have two or more numbers in stack
+        Double result;
+        if (stack.size() >= 2) {
+            x = stack.pop(); //input
+            y = stack.pop(); //last element which was added by enter button
+
+            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
+            if( !(stack.size()==0) ){
+                secondLastElement= stack.pop();
+                stackIsOver=false;
+                stack.push(secondLastElement);
+
+                result = Math.pow(x,y);
+                return result;
+
+            }
+            else {
+                //  secondLastElement = Double.valueOf(0);
+                stackIsOver = true;
+                clear();
+                result = Math.pow(x,y);
+                return result;
+            }
+
+            //push result to stack - STACK 1
+            //stack.push(result);
+
+        } else {
+            Double x = stack.pop();
+            clear();
+            return x;
+
+        }
+    }
+
 
 }

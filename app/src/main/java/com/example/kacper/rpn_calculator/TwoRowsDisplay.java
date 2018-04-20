@@ -3,22 +3,15 @@ package com.example.kacper.rpn_calculator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class TwoRowsDisplay extends Activity {
+
 
     Stack stack = new Stack();
     /*WHY DO WE NEED CLICKED FLAG?
@@ -50,7 +43,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_two_rows_display);
 
         final TextView maininput = (TextView)findViewById(R.id.mainInput);
         final TextView stackInput = findViewById(R.id.stackInput);
@@ -199,10 +192,10 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                            maininput.setText("");
-                            stack.clear();
-                            stackInput.setText("STACK: "+(stack.size()+1));
-                            firstStackInput.setText("");
+                        maininput.setText("");
+                        stack.clear();
+                        stackInput.setText("STACK: "+(stack.size()+1));
+                        firstStackInput.setText("");
                     }
                 }
         );
@@ -299,58 +292,58 @@ public class MainActivity extends Activity {
         );
 
         enterButton.setOnClickListener(
-               new Button.OnClickListener(){
-                   @Override
-                   public void onClick(View v) {
-                       enterButtonClicked=true;
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        enterButtonClicked=true;
 
                         String parseNumber;
 
-                       //first make sure that input is not null -> if it is just enter 0 to stack
-                       if(maininput.getText().toString().matches("")){
+                        //first make sure that input is not null -> if it is just enter 0 to stack
+                        if(maininput.getText().toString().matches("")){
 
-                           stack.push(0);
-                           int result = (int) stack.peek();
-                           parseNumber = String.valueOf(result);
-                           maininput.setText(parseNumber);
-                           firstStackInput.setText("");
-                           stackInput.setText("STACK: "+(stack.size()+1)); //+one because we start count stack size from 1 not from 0
-
-
-                       }
-
-                       else {
-                               //first parse input to double than push our result to the stack
-                               //then add last element on the stack to the firstStackInput)
-                               double result = Double.parseDouble(maininput.getText().toString());
-                               stack.push(result);
-                               stackInput.setText("STACK: " + (stack.size()+1));
-
-                                   //check if our number from stack is integer or double - cause if its integer than we dont want to see zeros
-                                   // -> for example we dont want to see this on stack input -> 54.0
-                                   if ((stack.peek() % 1) == 0) {
-                                       int resultInt = (int) stack.peek();
-                                       parseNumber = String.valueOf(resultInt);
-
-                                       //add to the screen last element of our stack
-                                       firstStackInput.setText(parseNumber);
-                                       maininput.setText(parseNumber);
-
-                                   } else {
-                                       //add to the screen last element of our stack
-
-                                       parseNumber = String.valueOf(stack.peek());
-                                       firstStackInput.setText(parseNumber);
-                                   }
+                            stack.push(0);
+                            int result = (int) stack.peek();
+                            parseNumber = String.valueOf(result);
+                            maininput.setText(parseNumber);
+                            firstStackInput.setText("");
+                            stackInput.setText("STACK: "+(stack.size()+1)); //+one because we start count stack size from 1 not from 0
 
 
+                        }
+
+                        else {
+                            //first parse input to double than push our result to the stack
+                            //then add last element on the stack to the firstStackInput)
+                            double result = Double.parseDouble(maininput.getText().toString());
+                            stack.push(result);
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                            //check if our number from stack is integer or double - cause if its integer than we dont want to see zeros
+                            // -> for example we dont want to see this on stack input -> 54.0
+                            if ((stack.peek() % 1) == 0) {
+                                int resultInt = (int) stack.peek();
+                                parseNumber = String.valueOf(resultInt);
+
+                                //add to the screen last element of our stack
+                                firstStackInput.setText(parseNumber);
+                                maininput.setText(parseNumber);
+
+                            } else {
+                                //add to the screen last element of our stack
+
+                                parseNumber = String.valueOf(stack.peek());
+                                firstStackInput.setText(parseNumber);
+                            }
 
 
 
 
-                       }
-                   }
-               }
+
+
+                        }
+                    }
+                }
         );
 
         additionButton.setOnClickListener(

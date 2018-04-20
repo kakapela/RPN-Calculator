@@ -15,6 +15,7 @@
 
         <ImageButton
             android:id="@+id/settingsButton"
+            android:onClick="goToSettings"
             android:src="@drawable/ic_settings_black_24dp"
             android:tint="#fff"
             android:background="@drawable/functional_buttons"
