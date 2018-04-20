@@ -41,26 +41,26 @@
         android:layout_rowWeight="1"
         />
 
-    <TextView
-        android:layout_column="0"
-        android:layout_row="1"
-        android:text="2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:textAlignment="center"
-        android:layout_columnWeight="1"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:text="2"
+            android:textAlignment="center"
+            android:textSize="35sp"
 
 
-        />
+            />
     <TextView
         android:id="@+id/firstStackInput"
         android:layout_column="1"
         android:layout_row="1"
-        android:hint="@string/inputText"
+        android:hint="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textAlignment="center"
         android:layout_gravity="right"
         android:gravity="right"
@@ -73,7 +73,7 @@
         android:text="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
+        android:textSize="35sp"
         android:textAlignment="center"
         android:layout_columnWeight="1"
 
@@ -84,7 +84,7 @@
         android:hint="@string/inputText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textAlignment="center"
         android:layout_gravity="right"
         android:gravity="right"
