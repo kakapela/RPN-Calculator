@@ -25,6 +25,23 @@ public class MainActivity extends AppCompatActivity {
                           * */
     boolean enterButtonClicked = false;
 
+    public void initializeButtons(View.OnClickListener view, String number , TextView maininput){
+
+        int inputCounter = maininput.getText().length();
+        if(inputCounter<10) {
+
+            if(enterButtonClicked){
+                maininput.setText("");
+                maininput.append(number);
+                enterButtonClicked=false;
+            }
+            else maininput.append(number);
+        }
+
+
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Button divideButton = findViewById(R.id.divideButton);
 
 
+
         //event handler and inside him callback method
         button0.setOnClickListener(
                 new Button.OnClickListener(){
@@ -80,17 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("1");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("1");
-                        }
-
+                        initializeButtons(this,"1",maininput);
 
                     }
                 }
@@ -99,18 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("2");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("2");
-                        }
-
-
+                        initializeButtons(this,"2",maininput);
                     }
                 }
         );
@@ -118,18 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("3");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("3");
-                        }
-
-
+                        initializeButtons(this,"3",maininput);
                     }
                 }
         );
@@ -137,17 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("4");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("4");
-                        }
-
+                        initializeButtons(this,"4",maininput);
                     }
                 }
         );
@@ -155,17 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("5");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("5");
-                        }
+                        initializeButtons(this,"5",maininput);
                     }
                 }
         );
@@ -174,16 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("6");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("6");
-                        }
+                        initializeButtons(this,"6",maininput);
                     }
                 }
         );
@@ -192,16 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("7");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("7");
-                        }
+                        initializeButtons(this,"7",maininput);
                     }
                 }
         );
@@ -209,16 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("8");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("8");
-                        }
+                        initializeButtons(this,"8",maininput);
                     }
                 }
         );
@@ -227,15 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int inputCounter = maininput.getText().length();
-                        if(inputCounter<10) {
-
-                            if(enterButtonClicked){
-                                maininput.setText("");
-                                maininput.append("9");
-                                enterButtonClicked=false;
-                            }
-                            else maininput.append("9");
-                        }
+                        initializeButtons(this,"9",maininput);
                     }
                 }
         );
@@ -335,71 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        String parseNumber;
 
-                        //we have to stack number from mainInput
-                        //
-
-                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
-                        if(stack.size()==0) {
-                            firstStackInput.setText("");
-
-                        }
-                        //ELSE DO ADDITION
-                        else {
-                                //pop two elements from stack,add them,parse and set to inputs
-
-                                double x = Double.parseDouble(maininput.getText().toString());
-                                stack.push(x);
-
-                                double result = stack.add();
-                                //check if result is integer
-                                    if ((result % 1) == 0) {
-                                        int resultInt = (int) result;
-                                        parseNumber = String.valueOf(resultInt);
-                                        maininput.setText(parseNumber);
-                                        stackInput.setText("STACK: " + (stack.size()+1));
-                                    } else {
-                                        parseNumber = String.valueOf(result);
-                                        maininput.setText(parseNumber);
-                                        stackInput.setText("STACK: " + (stack.size()+1));
-                                    }
-                                //PUTTING LAST POP ELEMENT TO STACK2 ROW
-
-                                //we have to get last pop element from stack and put him into the screen
-                                //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
-                                    if (stack.size() == 0) {
-                                        firstStackInput.setText("");
-                                    } else {
-
-                                        //we get lastPopElement, check if its integer and put it to inputs
-                                        double lastPopElement = stack.getSecondLastElement();
-                                            if((lastPopElement %1)==0)
-                                            {
-                                                if(stack.isStackIsOver()){
-                                                    firstStackInput.setText("");
-                                                    stackInput.setText("STACK: 1");
-                                                }
-                                                else {
-                                                    int tmp = (int) lastPopElement;
-                                                    parseNumber = String.valueOf(tmp);
-                                                    firstStackInput.setText(parseNumber);
-                                                }
-
-                                            }
-                                            else {
-                                                if(stack.isStackIsOver()){
-                                                    firstStackInput.setText("");
-                                                    stackInput.setText("STACK: 1");
-                                                }
-                                                else {
-                                                    parseNumber = String.valueOf(lastPopElement);
-                                                    firstStackInput.setText(parseNumber);
-                                                }
-                                                }
-                                    }
-
-                        }
                     }
                 }
         );
