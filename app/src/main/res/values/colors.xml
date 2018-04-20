@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="orange">#FFA500</color>
+    <color name="greyy">#7f7f7f</color>
+    <color name="functional">#ff2500</color>
+    <color name="drop">#1C6BA0</color>
+    <color name="swap">#551A8B</color>
+    <color name="enter">#32CD32</color>
+
+
 </resources>
