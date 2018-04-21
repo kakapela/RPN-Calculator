@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".Settings">
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:background="#000" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="80dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Display stack"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+
+        />
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/radio1"
+                android:layout_height="wrap_content"
+                android:text="1 row"
+                android:layout_margin="10dp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/radio2"
+                android:layout_height="wrap_content"
+                android:text="2 rows"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/radio3"
+                android:text="3 rows"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/radio4"
+                android:text="4 rows"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stack screen color"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/whiteStack"
+                android:layout_height="wrap_content"
+                android:text="white"
+                android:layout_margin="10dp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/blackStack"
+                android:layout_height="wrap_content"
+                android:text="gray"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/blueStack"
+                android:text="blue"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/greenStack"
+                android:text="green"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="1sp"
+        android:background="#000" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:id="@+id/backButton"
+            android:textColor="#fff"
+            android:layout_margin="10dp"
+            android:onClick="back"
+            android:text="Back"
+            android:background="@color/functional"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:layout_marginTop="5dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/saveButton"
+            android:onClick="save"
+            android:text="Save"
+            android:background="@color/enter"/>
+
+    </LinearLayout>
+
+</LinearLayout>
