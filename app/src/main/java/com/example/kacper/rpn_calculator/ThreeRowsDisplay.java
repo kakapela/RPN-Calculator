@@ -74,9 +74,9 @@ public class ThreeRowsDisplay extends Activity {
                     secondStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
                     maininput.setTextColor(getResources().getColor(R.color.stackWhite));
 
-                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
-                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+                    maininput.setHintTextColor(getResources().getColor(R.color.stackBlack));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackWhite));
                     stack2.setTextColor(getResources().getColor(R.color.stackWhite));
@@ -91,9 +91,9 @@ public class ThreeRowsDisplay extends Activity {
                     secondStackInput.setTextColor(getResources().getColor(R.color.stackBlack));
                     maininput.setTextColor(getResources().getColor(R.color.stackBlack));
 
-                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackBlack));
-                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackBlack));
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.greyy));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.greyy));
+                    maininput.setHintTextColor(getResources().getColor(R.color.greyy));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackBlack));
                     stack2.setTextColor(getResources().getColor(R.color.stackBlack));
@@ -108,9 +108,9 @@ public class ThreeRowsDisplay extends Activity {
                     secondStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
                     maininput.setTextColor(getResources().getColor(R.color.stackWhite));
 
-                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
-                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.greyy));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.greyy));
+                    maininput.setHintTextColor(getResources().getColor(R.color.greyy));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackWhite));
                     stack2.setTextColor(getResources().getColor(R.color.stackWhite));
@@ -125,9 +125,9 @@ public class ThreeRowsDisplay extends Activity {
                     secondStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
                     maininput.setTextColor(getResources().getColor(R.color.stackWhite));
 
-                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
-                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.greyy));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.greyy));
+                    maininput.setHintTextColor(getResources().getColor(R.color.greyy));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackWhite));
                     stack2.setTextColor(getResources().getColor(R.color.stackWhite));

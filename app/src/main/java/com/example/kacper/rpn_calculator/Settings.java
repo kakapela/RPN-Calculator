@@ -24,7 +24,7 @@ public class Settings extends Activity {
         if(radio2.isChecked()){
         Intent i = new Intent(this,TwoRowsDisplay.class);
 
-            if(blueStack.isChecked()) i.putExtra("color","black");
+            if(blackStack.isChecked()) i.putExtra("color","black");
             else if (blueStack.isChecked())  i.putExtra("color","blue");
             else if (greenStack.isChecked()) i.putExtra("color","green");
             else i.putExtra("color","white");

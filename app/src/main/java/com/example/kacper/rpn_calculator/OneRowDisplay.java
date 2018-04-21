@@ -70,7 +70,7 @@ public class OneRowDisplay extends Activity {
                     stackInput.setTextColor(getResources().getColor(R.color.stackWhite));
                     maininput.setTextColor(getResources().getColor(R.color.stackWhite));
 
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setHintTextColor(getResources().getColor(R.color.stackBlack));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackWhite));
                     deg.setTextColor(getResources().getColor(R.color.stackWhite));
@@ -80,7 +80,7 @@ public class OneRowDisplay extends Activity {
                     stackInput.setTextColor(getResources().getColor(R.color.stackBlack));
 
                     maininput.setTextColor(getResources().getColor(R.color.stackBlack));
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+                    maininput.setHintTextColor(getResources().getColor(R.color.greyy));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackBlack));
                     deg.setTextColor(getResources().getColor(R.color.stackBlack));
@@ -90,7 +90,7 @@ public class OneRowDisplay extends Activity {
                     stackInput.setTextColor(getResources().getColor(R.color.stackWhite));
                     maininput.setTextColor(getResources().getColor(R.color.stackWhite));
 
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setHintTextColor(getResources().getColor(R.color.greyy));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackWhite));
                     deg.setTextColor(getResources().getColor(R.color.stackWhite));
@@ -101,7 +101,7 @@ public class OneRowDisplay extends Activity {
 
                     maininput.setTextColor(getResources().getColor(R.color.stackWhite));
 
-                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setHintTextColor(getResources().getColor(R.color.greyy));
 
                     stack1.setTextColor(getResources().getColor(R.color.stackWhite));
                     deg.setTextColor(getResources().getColor(R.color.stackWhite));
