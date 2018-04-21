@@ -216,7 +216,8 @@ public class TwoRowsDisplay extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        if(maininput.getText().toString().matches("")){
+                        if(stack.size()==0) maininput.setText("Error");
+                       else if(maininput.getText().toString().matches("")){
                             maininput.setText("");
                         }
                         else {
@@ -270,11 +271,13 @@ public class TwoRowsDisplay extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        double number = Double.parseDouble(maininput.getText().toString());
-                        double result = Math.sqrt(number);
-                        String parser = String.valueOf(result);
-                        maininput.setText(parser);
-
+                        if(maininput.getText().toString().matches("")) maininput.setText("0");
+                        else {
+                            double number = Double.parseDouble(maininput.getText().toString());
+                            double result = Math.sqrt(number);
+                            String parser = String.valueOf(result);
+                            maininput.setText(parser);
+                        }
                     }
                 }
         );
@@ -282,11 +285,13 @@ public class TwoRowsDisplay extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        double element = Double.parseDouble(maininput.getText().toString());
-                        double result=-1*element;
-                        String parser = String.valueOf(result);
-                        maininput.setText(parser);
-
+                        if(maininput.getText().toString().matches("")) maininput.setText("");
+                        else {
+                            double element = Double.parseDouble(maininput.getText().toString());
+                            double result = -1 * element;
+                            String parser = String.valueOf(result);
+                            maininput.setText(parser);
+                        }
                     }
                 }
         );
@@ -303,7 +308,7 @@ public class TwoRowsDisplay extends Activity {
                         if(maininput.getText().toString().matches("")){
 
                             stack.push(0);
-                            int result = (int) stack.peek();
+                            long result = (long) stack.peek();
                             parseNumber = String.valueOf(result);
                             maininput.setText(parseNumber);
                             firstStackInput.setText("");
@@ -322,7 +327,7 @@ public class TwoRowsDisplay extends Activity {
                             //check if our number from stack is integer or double - cause if its integer than we dont want to see zeros
                             // -> for example we dont want to see this on stack input -> 54.0
                             if ((stack.peek() % 1) == 0) {
-                                int resultInt = (int) stack.peek();
+                                long resultInt = (long) stack.peek();
                                 parseNumber = String.valueOf(resultInt);
 
                                 //add to the screen last element of our stack
@@ -370,7 +375,7 @@ public class TwoRowsDisplay extends Activity {
                             double result = stack.add();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -396,7 +401,7 @@ public class TwoRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -519,7 +524,7 @@ public class TwoRowsDisplay extends Activity {
                             double result = stack.mul();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -545,7 +550,7 @@ public class TwoRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -592,7 +597,7 @@ public class TwoRowsDisplay extends Activity {
                             double result = stack.pow();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -618,7 +623,7 @@ public class TwoRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -665,7 +670,7 @@ public class TwoRowsDisplay extends Activity {
                             double result = stack.div();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -691,7 +696,7 @@ public class TwoRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }

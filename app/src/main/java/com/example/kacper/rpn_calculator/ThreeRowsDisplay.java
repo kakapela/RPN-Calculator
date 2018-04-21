@@ -218,7 +218,7 @@ public class ThreeRowsDisplay extends Activity {
                         if(maininput.getText().toString().matches("")){
 
                             stack.push(0);
-                            int result = (int) stack.peek();
+                            long result = (long) stack.peek();
                             parseNumber = String.valueOf(result);
                             maininput.setText(parseNumber);
                             firstStackInput.setText("");
@@ -237,7 +237,7 @@ public class ThreeRowsDisplay extends Activity {
                             //check if our number from stack is integer or double - cause if its integer than we dont want to see zeros
                             // -> for example we dont want to see this on stack input -> 54.0
                             if ((stack.peek() % 1) == 0) {
-                                int resultInt = (int) stack.peek();
+                                long resultInt = (long) stack.peek();
                                 parseNumber = String.valueOf(resultInt);
 
                                 //add to the screen last element of our stack
@@ -285,7 +285,7 @@ public class ThreeRowsDisplay extends Activity {
                             double result = stack.add();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -311,7 +311,7 @@ public class ThreeRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -361,7 +361,7 @@ public class ThreeRowsDisplay extends Activity {
                             double result = stack.sub();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -387,7 +387,7 @@ public class ThreeRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long  tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -434,7 +434,7 @@ public class ThreeRowsDisplay extends Activity {
                             double result = stack.mul();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -460,7 +460,7 @@ public class ThreeRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -507,7 +507,7 @@ public class ThreeRowsDisplay extends Activity {
                             double result = stack.div();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -533,7 +533,7 @@ public class ThreeRowsDisplay extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }

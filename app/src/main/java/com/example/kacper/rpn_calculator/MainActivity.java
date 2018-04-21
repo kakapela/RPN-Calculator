@@ -19,7 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-
     Stack stack = new Stack();
     /*WHY DO WE NEED CLICKED FLAG?
       1. So we have to check if we clicked enterButton -> cause if we do, we want to clear our input first and than append a number
@@ -49,6 +48,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -81,7 +81,42 @@ public class MainActivity extends Activity {
         Button sqrtButton  =findViewById(R.id.squareButton);
 
 
+        signButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        if(maininput.getText().toString().matches("")) maininput.setText("");
+                        else {
+                            double element = Double.parseDouble(maininput.getText().toString());
+                            double result = -1 * element;
+                            String parser = String.valueOf(result);
+                            maininput.setText(parser);
+                        }
+                    }
+                }
+        );
+        swapButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        if(stack.size()==0) maininput.setText("Error");
+                        else if(maininput.getText().toString().matches("")){
+                            maininput.setText("");
+                        }
+                        else {
+                            double secondLastElement = stack.pop();
+                            double lastElement = Double.parseDouble(maininput.getText().toString());
 
+                            //parsing to Strings
+                            String parser = String.valueOf(secondLastElement);
+                            String parser2 = String.valueOf(lastElement);
+                            maininput.setText(parser);
+                            stack.push(lastElement);
+                            firstStackInput.setText(parser2);
+                        }
+                    }
+                }
+        );
 
 
         //event handler and inside him callback method
@@ -219,27 +254,7 @@ public class MainActivity extends Activity {
                     }
                 }
         );
-        swapButton.setOnClickListener(
-                new Button.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        if(maininput.getText().toString().matches("")){
-                            maininput.setText("");
-                        }
-                        else {
-                            double secondLastElement = stack.pop();
-                            double lastElement = Double.parseDouble(maininput.getText().toString());
 
-                            //parsing to Strings
-                            String parser = String.valueOf(secondLastElement);
-                            String parser2 = String.valueOf(lastElement);
-                            maininput.setText(parser);
-                            stack.push(lastElement);
-                            firstStackInput.setText(parser2);
-                        }
-                    }
-                }
-        );
         dropButton.setOnClickListener(
                 new Button.OnClickListener(){
                     @Override
@@ -277,23 +292,13 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        double number = Double.parseDouble(maininput.getText().toString());
-                        double result = Math.sqrt(number);
-                        String parser = String.valueOf(result);
-                        maininput.setText(parser);
-
-                    }
-                }
-        );
-        signButton.setOnClickListener(
-                new Button.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        double element = Double.parseDouble(maininput.getText().toString());
-                        double result=-1*element;
-                        String parser = String.valueOf(result);
-                        maininput.setText(parser);
-
+                        if(maininput.getText().toString().matches("")) maininput.setText("0");
+                        else {
+                            double number = Double.parseDouble(maininput.getText().toString());
+                            double result = Math.sqrt(number);
+                            String parser = String.valueOf(result);
+                            maininput.setText(parser);
+                        }
                     }
                 }
         );
@@ -310,7 +315,7 @@ public class MainActivity extends Activity {
                        if(maininput.getText().toString().matches("")){
 
                            stack.push(0);
-                           int result = (int) stack.peek();
+                           long result = (long) stack.peek();
                            parseNumber = String.valueOf(result);
                            maininput.setText(parseNumber);
                            firstStackInput.setText("");
@@ -329,7 +334,7 @@ public class MainActivity extends Activity {
                                    //check if our number from stack is integer or double - cause if its integer than we dont want to see zeros
                                    // -> for example we dont want to see this on stack input -> 54.0
                                    if ((stack.peek() % 1) == 0) {
-                                       int resultInt = (int) stack.peek();
+                                      long resultInt = (long) stack.peek();
                                        parseNumber = String.valueOf(resultInt);
 
                                        //add to the screen last element of our stack
@@ -377,7 +382,7 @@ public class MainActivity extends Activity {
                             double result = stack.add();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                               long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -403,7 +408,7 @@ public class MainActivity extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -453,7 +458,7 @@ public class MainActivity extends Activity {
                             double result = stack.sub();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -479,7 +484,7 @@ public class MainActivity extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -526,7 +531,7 @@ public class MainActivity extends Activity {
                             double result = stack.mul();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -552,7 +557,7 @@ public class MainActivity extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -599,7 +604,7 @@ public class MainActivity extends Activity {
                             double result = stack.pow();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                               long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -625,7 +630,7 @@ public class MainActivity extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
@@ -672,7 +677,7 @@ public class MainActivity extends Activity {
                             double result = stack.div();
                             //check if result is integer
                             if ((result % 1) == 0) {
-                                int resultInt = (int) result;
+                                long resultInt = (long) result;
                                 parseNumber = String.valueOf(resultInt);
                                 maininput.setText(parseNumber);
                                 stackInput.setText("STACK: " + (stack.size()+1));
@@ -698,7 +703,7 @@ public class MainActivity extends Activity {
                                         stackInput.setText("STACK: 1");
                                     }
                                     else {
-                                        int tmp = (int) lastPopElement;
+                                        long tmp = (long) lastPopElement;
                                         parseNumber = String.valueOf(tmp);
                                         firstStackInput.setText(parseNumber);
                                     }
