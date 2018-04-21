@@ -7,10 +7,18 @@
     android:orientation="vertical"
 
     tools:context=".Settings">
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60sp"
+        android:background="#000" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose display stack"
+        android:text="Display stack"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
@@ -55,11 +63,74 @@
                 android:layout_margin="10dp"
                 android:id="@+id/radio4"
                 android:text="4 rows"/>
+
+
         </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="1sp"
+        android:background="#000" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stack screen color"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+
+
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:id="@+id/whiteStack"
+            android:layout_height="wrap_content"
+            android:text="white"
+            android:layout_margin="10dp"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:id="@+id/blackStack"
+            android:layout_height="wrap_content"
+            android:text="gray"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/blueStack"
+            android:text="blue"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/greenStack"
+            android:text="green"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         >
         <Button
             android:layout_width="wrap_content"
@@ -85,7 +156,13 @@
             android:background="@color/enter"/>
 
     </LinearLayout>
+    <View
 
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="1sp"
+        android:background="#000" />
 
 
 </LinearLayout>

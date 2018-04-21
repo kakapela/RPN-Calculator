@@ -9,6 +9,8 @@
     <color name="drop">#1C6BA0</color>
     <color name="swap">#551A8B</color>
     <color name="enter">#32CD32</color>
+    <color name="stackBlack">#4c4c4c</color>
+    <color name="stackWhite">#fff</color>
 
 
 </resources>

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -44,9 +45,99 @@ public class ThreeRowsDisplay extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_rows_display);
 
+        //------------------------------------------------------------------------------------------------------------------------------------------------
+        //HERE WE ARE CHECKING WHAT COLOR OF STACK SCREEN THE USER WOULD LIKE TO CHOOSE
+
+        String color=null;
+        GridLayout fourStackLayout = findViewById(R.id.StackLayout);
+        //These are only numbers, exists only for change color, they useful
+        TextView stack1 = findViewById(R.id.stack1);
+        TextView stack2 = findViewById(R.id.stack2);
+        TextView stack3 = findViewById(R.id.stack3);
+        TextView deg = findViewById(R.id.deg);
+
+        //these are important-stack screens
+        TextView secondStackInput = findViewById(R.id.secondStackInput);
         final TextView maininput = (TextView)findViewById(R.id.mainInput);
         final TextView stackInput = findViewById(R.id.stackInput);
         final TextView firstStackInput = findViewById(R.id.firstStackInput);
+
+        if (getIntent().hasExtra("color")) {
+            color = getIntent().getStringExtra("color");
+
+            switch (color){
+                case "black":
+                    fourStackLayout.setBackgroundColor(getResources().getColor(R.color.greyy));
+                    stackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+
+                    firstStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+                    secondStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setTextColor(getResources().getColor(R.color.stackWhite));
+
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+
+                    stack1.setTextColor(getResources().getColor(R.color.stackWhite));
+                    stack2.setTextColor(getResources().getColor(R.color.stackWhite));
+                    stack3.setTextColor(getResources().getColor(R.color.stackWhite));
+                    deg.setTextColor(getResources().getColor(R.color.stackWhite));
+                    break;
+                case "white":
+                    fourStackLayout.setBackgroundColor(getResources().getColor(R.color.stackWhite));
+                    stackInput.setTextColor(getResources().getColor(R.color.stackBlack));
+
+                    firstStackInput.setTextColor(getResources().getColor(R.color.stackBlack));
+                    secondStackInput.setTextColor(getResources().getColor(R.color.stackBlack));
+                    maininput.setTextColor(getResources().getColor(R.color.stackBlack));
+
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+                    maininput.setHintTextColor(getResources().getColor(R.color.stackBlack));
+
+                    stack1.setTextColor(getResources().getColor(R.color.stackBlack));
+                    stack2.setTextColor(getResources().getColor(R.color.stackBlack));
+                    stack3.setTextColor(getResources().getColor(R.color.stackBlack));
+                    deg.setTextColor(getResources().getColor(R.color.stackBlack));
+                    break;
+                case "green":
+                    fourStackLayout.setBackgroundColor(getResources().getColor(R.color.enter));
+                    stackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+
+                    firstStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+                    secondStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setTextColor(getResources().getColor(R.color.stackWhite));
+
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+
+                    stack1.setTextColor(getResources().getColor(R.color.stackWhite));
+                    stack2.setTextColor(getResources().getColor(R.color.stackWhite));
+                    stack3.setTextColor(getResources().getColor(R.color.stackWhite));
+                    deg.setTextColor(getResources().getColor(R.color.stackWhite));
+                    break;
+                case "blue":
+                    fourStackLayout.setBackgroundColor(getResources().getColor(R.color.drop));
+                    stackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+
+                    firstStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+                    secondStackInput.setTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setTextColor(getResources().getColor(R.color.stackWhite));
+
+                    firstStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    secondStackInput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+                    maininput.setHintTextColor(getResources().getColor(R.color.stackWhite));
+
+                    stack1.setTextColor(getResources().getColor(R.color.stackWhite));
+                    stack2.setTextColor(getResources().getColor(R.color.stackWhite));
+                    stack3.setTextColor(getResources().getColor(R.color.stackWhite));
+                    deg.setTextColor(getResources().getColor(R.color.stackWhite));
+            }
+        }
+
+        //===================================================================================================================================================
+
         Button button0 = (Button)findViewById(R.id.button0);
         Button button1 = (Button)findViewById(R.id.button1);
         Button button2 = (Button)findViewById(R.id.button2);
