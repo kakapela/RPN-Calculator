@@ -92,6 +92,8 @@ public class Stack {
         }
     }
 
+
+    //THESE ARE ONLY FOR TWO AND ONE ROW DISPLAY STACK
     //subtract two numbers, first pop from stack then compute result
     public double sub() {
         //add only if we have two or more numbers in stack
@@ -237,73 +239,5 @@ public class Stack {
         }
     }
 
-
-    //METHODS FOR THREE STACK DISPLAY
-
-    public double addThreeStack() {
-        //add only if we have two or more numbers in stack
-        Double result;
-        if (stack.size() == 2) {
-            x = stack.pop(); //input
-            y = stack.pop(); //last element which was added by enter button
-
-            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
-            if( !(stack.size()==0) ){
-                secondLastElement= stack.pop();
-                stackIsOver=false;
-                stack.push(secondLastElement);
-
-                result = y + x;
-                return result;
-
-            }
-            else {
-                //  secondLastElement = Double.valueOf(0);
-                stackIsOver = true;
-                clear();
-                result = y + x;
-                return result;
-            }
-
-            //push result to stack - STACK 1
-            //stack.push(result);
-
-        }
-        else if(stack.size()>=3) {
-            //add only if we have two or more numbers in stack
-            x = stack.pop(); //input
-            y = stack.pop(); //last element which was added by enter button
-            thirdLastElement = stack.pop();
-            push(thirdLastElement);
-
-            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
-            if (!(stack.size() == 0)) {
-                secondLastElement = stack.pop();
-                stackIsOver = false;
-                stack.push(secondLastElement);
-
-                result = y + x;
-                return result;
-
-            } else {
-                //  secondLastElement = Double.valueOf(0);
-                stackIsOver = true;
-                clear();
-                result = y + x;
-                return result;
-            }
-
-            //push result to stack - STACK 1
-            //stack.push(result);
-        }
-
-
-        else {
-            Double x = stack.pop();
-            clear();
-            return x;
-
-        }
-    }
 
 }

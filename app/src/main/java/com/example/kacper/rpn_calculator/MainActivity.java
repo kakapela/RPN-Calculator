@@ -18,15 +18,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-//todo - commentary section, full code finished
+/*commentary section -> below code*/
 public class MainActivity extends Activity {
+
     Stack stack = new Stack();
+
     /*WHY DO WE NEED CLICKED FLAG?
       1. So we have to check if we clicked enterButton -> cause if we do, we want to clear our input first and than append a number
       2. if we didnt clicked than just append a number
                           * */
     boolean enterButtonClicked = false;
 
+    /*INITIALIZE METHOD FOR 1-9 NUMBERS
+    1. We are checking length of mainInput
+     */
     public void initializeButtons(View.OnClickListener view, String number , TextView maininput){
 
         int inputCounter = maininput.getText().length();
@@ -920,3 +925,10 @@ public class MainActivity extends Activity {
 
 
 }
+
+/* O kodzie:
+
+1. Każdy widok to nowa aktywność. Mamy widoki z 1,2,3 lub 4 wierszami do stosu.
+2. Wiekszosc kodu jest powtarzalna zatem komentarze znajduja się w tej klasie
+
+* */
