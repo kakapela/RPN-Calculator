@@ -365,32 +365,58 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-
-
-                        if (stack.size() == 0) {
-                            maininput.setText(firstStackInput.getText().toString());
+                        if(stack.size()==0) maininput.setText("0");
+                        else if(stack.size()==1){
+                            maininput.setText(String.valueOf(stack.peek()));
+                            stack.pop();
                             firstStackInput.setText("0");
+                            stackInput.setText("STACK: " + (stack.size()+1));
                         }
-                        if (stack.size() == 1) {
-                            double lastElement = stack.pop();
-                            String parser = String.valueOf(lastElement);
 
-                            stackInput.setText("STACK: " + (stack.size() + 1));
-                            firstStackInput.setText("0");
-                            maininput.setText(parser);
+                        else if(stack.size()==2){
+                            maininput.setText(String.valueOf(stack.peek()));
+                            double lastElement=  stack.pop();//remove 2
+                            double secondLastElement = stack.pop(); //remove 1
+                            stack.push(secondLastElement);
+
+                            firstStackInput.setText(String.valueOf(secondLastElement));
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+                            stackInput.setText("STACK: " + (stack.size()+1));
                         }
-                        if(stack.size()>1)
-                        {
-                            double lastElement = stack.pop();
-                            String parser = String.valueOf(lastElement);
+                        else if(stack.size()==3){
+                            maininput.setText(String.valueOf(stack.peek()));
+                            double LastElement =  stack.pop(); //remove 3
+                            double secondLastElement = stack.pop(); //remove 2
+                            double thirdLastElement = stack.pop(); //remove 1
+                            firstStackInput.setText(String.valueOf(secondLastElement));
+                            secondStackInput.setText(String.valueOf(thirdLastElement));
+                            thirdStackInput.setText("");
+                            stack.push(thirdLastElement);
+                            stack.push(secondLastElement);
 
-                            double element = stack.peek();
-                            String parser2 = String.valueOf(element);
+                            stackInput.setText("STACK: " + (stack.size()+1));
 
-                            stackInput.setText("STACK: " + (stack.size() + 1));
-                            firstStackInput.setText(parser2);
-                            maininput.setText(parser);
+
+
                         }
+                        else{
+                            maininput.setText(String.valueOf(stack.peek()));
+                            double LastElement =  stack.pop(); //remove 4
+                            double secondLastElement = stack.pop(); //remove 3
+                            double thirdLastElement = stack.pop(); //remove 2
+                            double fourthLastElement = stack.pop(); //remove 1
+                            firstStackInput.setText(String.valueOf(secondLastElement));
+                            secondStackInput.setText(String.valueOf(thirdLastElement));
+                            thirdStackInput.setText(String.valueOf(fourthLastElement));
+                            stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
+                            stack.push(secondLastElement);
+
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                        }
+
                     }
                 }
         );
@@ -439,12 +465,14 @@ public class MainActivity extends Activity {
                                firstStackInput.setText(String.valueOf(stack.peek()));
                                secondStackInput.setText("");
                                thirdStackInput.setText("");
+                               stackInput.setText("STACK: "+(stack.size()+1));
                            }
                            else if (stack.size()==1){
                                thirdStackInput.setText("");
                                secondStackInput.setText(String.valueOf(stack.peek()));
                                stack.push(Double.parseDouble(maininput.getText().toString()));
                                firstStackInput.setText(String.valueOf(stack.peek()));
+                               stackInput.setText("STACK: "+(stack.size()+1));
 
                            }
                             else {
@@ -456,6 +484,7 @@ public class MainActivity extends Activity {
                                firstStackInput.setText(String.valueOf(stack.peek()));
                                secondStackInput.setText(String.valueOf(lastElement));
                                thirdStackInput.setText(String.valueOf(secondLastElement));
+                               stackInput.setText("STACK: "+(stack.size()+1));
 
                            }
 
@@ -499,6 +528,7 @@ public class MainActivity extends Activity {
                             firstStackInput.setText(String.valueOf(thirdLastElement));
                             secondStackInput.setText("");
                             thirdStackInput.setText("");
+                            stackInput.setText("STACK: "+(stack.size()+1));
 
 
                             stackInput.setText("STACK: " + (stack.size()+1));
@@ -555,6 +585,7 @@ public class MainActivity extends Activity {
                             secondStackInput.setText("");
                             thirdStackInput.setText("");
                             maininput.setText("");
+
                         }
                         else if(stack.size()==1) {
                             stack.push(Double.parseDouble(maininput.getText().toString()));

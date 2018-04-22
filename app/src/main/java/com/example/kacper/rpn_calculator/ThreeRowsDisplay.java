@@ -638,7 +638,7 @@ public class ThreeRowsDisplay extends Activity {
               else if(stack.size()==1){
                   maininput.setText(String.valueOf(stack.peek()));
                   stack.pop();
-                  firstStackInput.setText("0");
+                  firstStackInput.setText("");
                   stackInput.setText("STACK: " + (stack.size()+1));
               }
 
