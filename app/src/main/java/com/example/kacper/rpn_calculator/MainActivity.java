@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+//todo - commentary section, full code finished
 public class MainActivity extends Activity {
     Stack stack = new Stack();
     /*WHY DO WE NEED CLICKED FLAG?
@@ -204,7 +205,7 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        if(stack.size()==0) maininput.setText("Error");
+                        if(stack.size()==0) maininput.setText("");
                         else if(maininput.getText().toString().matches("")){
                             maininput.setText("");
                         }

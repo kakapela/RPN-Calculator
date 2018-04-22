@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+//todo - swap function
 public class OneRowDisplay extends Activity {
 
     Operations operations = new Operations();
@@ -278,7 +279,7 @@ public class OneRowDisplay extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        maininput.setText("Error");
+                       //TODO
                     }
                 }
         );

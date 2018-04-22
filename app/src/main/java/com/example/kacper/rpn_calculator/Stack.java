@@ -9,6 +9,8 @@ public class Stack {
     private Double x;
     private  Double y;
     private Double secondLastElement;
+    private Double thirdLastElement;
+    private Double fourthLastElement;
     boolean stackIsOver=false;
 
     //push number to stack
@@ -43,6 +45,14 @@ public class Stack {
 
     public boolean isStackIsOver() {
         return stackIsOver;
+    }
+
+    public Double getThirdLastElement() {
+        return thirdLastElement;
+    }
+
+    public Double getFourthLastElement() {
+        return fourthLastElement;
     }
 
     //first pop two last numbers from stack and than add them
@@ -227,5 +237,73 @@ public class Stack {
         }
     }
 
+
+    //METHODS FOR THREE STACK DISPLAY
+
+    public double addThreeStack() {
+        //add only if we have two or more numbers in stack
+        Double result;
+        if (stack.size() == 2) {
+            x = stack.pop(); //input
+            y = stack.pop(); //last element which was added by enter button
+
+            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
+            if( !(stack.size()==0) ){
+                secondLastElement= stack.pop();
+                stackIsOver=false;
+                stack.push(secondLastElement);
+
+                result = y + x;
+                return result;
+
+            }
+            else {
+                //  secondLastElement = Double.valueOf(0);
+                stackIsOver = true;
+                clear();
+                result = y + x;
+                return result;
+            }
+
+            //push result to stack - STACK 1
+            //stack.push(result);
+
+        }
+        else if(stack.size()>=3) {
+            //add only if we have two or more numbers in stack
+            x = stack.pop(); //input
+            y = stack.pop(); //last element which was added by enter button
+            thirdLastElement = stack.pop();
+            push(thirdLastElement);
+
+            //if you dont have anything to pop set Flag -> flag set '' to firstStackInput and says it s over
+            if (!(stack.size() == 0)) {
+                secondLastElement = stack.pop();
+                stackIsOver = false;
+                stack.push(secondLastElement);
+
+                result = y + x;
+                return result;
+
+            } else {
+                //  secondLastElement = Double.valueOf(0);
+                stackIsOver = true;
+                clear();
+                result = y + x;
+                return result;
+            }
+
+            //push result to stack - STACK 1
+            //stack.push(result);
+        }
+
+
+        else {
+            Double x = stack.pop();
+            clear();
+            return x;
+
+        }
+    }
 
 }
