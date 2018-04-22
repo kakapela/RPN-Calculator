@@ -365,6 +365,7 @@ public class ThreeRowsDisplay extends Activity {
                         if(stack.size()==0) {
                             firstStackInput.setText("");
                             secondStackInput.setText("");
+                            maininput.setText("");
                         }
                         else if(stack.size()==1) {
                             stack.push(Double.parseDouble(maininput.getText().toString()));

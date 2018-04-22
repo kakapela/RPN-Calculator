@@ -60,15 +60,15 @@ public class MainActivity extends Activity {
         String color=null;
         GridLayout fourStackLayout = findViewById(R.id.StackLayout);
         //These are only numbers, exists only for change color, they useful
-        TextView stack1 = findViewById(R.id.stack1);
+        final TextView stack1 = findViewById(R.id.stack1);
         TextView stack2 = findViewById(R.id.stack2);
         TextView stack3 = findViewById(R.id.stack3);
         TextView stack4 = findViewById(R.id.stack4);
         TextView deg = findViewById(R.id.deg);
 
         //these are important-stack screens
-        TextView secondStackInput = findViewById(R.id.secondStackInput);
-        TextView thirdStackInput = findViewById(R.id.thirdStackInput);
+        final TextView secondStackInput = findViewById(R.id.secondStackInput);
+        final TextView thirdStackInput = findViewById(R.id.thirdStackInput);
         final TextView maininput = (TextView)findViewById(R.id.mainInput);
         final TextView stackInput = findViewById(R.id.stackInput);
         final TextView firstStackInput = findViewById(R.id.firstStackInput);
@@ -415,7 +415,7 @@ public class MainActivity extends Activity {
                    public void onClick(View v) {
                        enterButtonClicked=true;
 
-                        String parseNumber;
+                       String parseNumber;
 
                        //first make sure that input is not null -> if it is just enter 0 to stack
                        if(maininput.getText().toString().matches("")){
@@ -425,38 +425,39 @@ public class MainActivity extends Activity {
                            parseNumber = String.valueOf(result);
                            maininput.setText(parseNumber);
                            firstStackInput.setText("");
+                           secondStackInput.setText("");
+                           thirdStackInput.setText("");
                            stackInput.setText("STACK: "+(stack.size()+1)); //+one because we start count stack size from 1 not from 0
 
 
                        }
 
                        else {
-                               //first parse input to double than push our result to the stack
-                               //then add last element on the stack to the firstStackInput)
-                               double result = Double.parseDouble(maininput.getText().toString());
-                               stack.push(result);
-                               stackInput.setText("STACK: " + (stack.size()+1));
 
-                                   //check if our number from stack is integer or double - cause if its integer than we dont want to see zeros
-                                   // -> for example we dont want to see this on stack input -> 54.0
-                                   if ((stack.peek() % 1) == 0) {
-                                      long resultInt = (long) stack.peek();
-                                       parseNumber = String.valueOf(resultInt);
+                           if(stack.size()==0){
+                               stack.push(Double.parseDouble(maininput.getText().toString()));
+                               firstStackInput.setText(String.valueOf(stack.peek()));
+                               secondStackInput.setText("");
+                               thirdStackInput.setText("");
+                           }
+                           else if (stack.size()==1){
+                               thirdStackInput.setText("");
+                               secondStackInput.setText(String.valueOf(stack.peek()));
+                               stack.push(Double.parseDouble(maininput.getText().toString()));
+                               firstStackInput.setText(String.valueOf(stack.peek()));
 
-                                       //add to the screen last element of our stack
-                                       firstStackInput.setText(parseNumber);
-                                       maininput.setText(parseNumber);
+                           }
+                            else {
+                               double lastElement =  stack.pop();//remove 2 in my example
+                               double secondLastElement = stack.pop();//remove 1 in my example
+                               stack.push(secondLastElement);
+                               stack.push(lastElement);
+                               stack.push(Double.parseDouble(maininput.getText().toString()));
+                               firstStackInput.setText(String.valueOf(stack.peek()));
+                               secondStackInput.setText(String.valueOf(lastElement));
+                               thirdStackInput.setText(String.valueOf(secondLastElement));
 
-                                   } else {
-                                       //add to the screen last element of our stack
-
-                                       parseNumber = String.valueOf(stack.peek());
-                                       firstStackInput.setText(parseNumber);
-                                   }
-
-
-
-
+                           }
 
 
                        }
@@ -468,70 +469,74 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        String parseNumber;
 
-                        //we have to stack number from mainInput
-                        //
-
-                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
                         if(stack.size()==0) {
                             firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+                            maininput.setText("");
+                        }
+                        else if(stack.size()==1) {
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop();
+                            double secondLastElement = stack.pop();
+                            double result= lastElement+secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                            firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
                         }
-                        //ELSE DO ADDITION
-                        else {
-                            //pop two elements from stack,add them,parse and set to inputs
+                        else if (stack.size()==2){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //3 in my example
+                            double secondLastElement = stack.pop(); //2 in my example
+                            double thirdLastElement = stack.pop(); //1 in my example
+                            double result= lastElement+secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
-                            double x = Double.parseDouble(maininput.getText().toString());
-                            stack.push(x);
 
-                            double result = stack.add();
-                            //check if result is integer
-                            if ((result % 1) == 0) {
-                               long resultInt = (long) result;
-                                parseNumber = String.valueOf(resultInt);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            } else {
-                                parseNumber = String.valueOf(result);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            }
-                            //PUTTING LAST POP ELEMENT TO STACK2 ROW
+                            stackInput.setText("STACK: " + (stack.size()+1));
 
-                            //we have to get last pop element from stack and put him into the screen
-                            //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
-                            if (stack.size() == 0) {
-                                firstStackInput.setText("");
-                            } else {
+                        }
+                        else if (stack.size()==3){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //4 in my example
+                            double secondLastElement = stack.pop(); //3 in my example
+                            double thirdLastElement = stack.pop(); //2 in my example
+                            double fourthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement+secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            stack.push(fourthLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText("");
 
-                                //we get lastPopElement, check if its integer and put it to inputs
-                                double lastPopElement = stack.getSecondLastElement();
-                                if((lastPopElement %1)==0)
-                                {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        long tmp = (long) lastPopElement;
-                                        parseNumber = String.valueOf(tmp);
-                                        firstStackInput.setText(parseNumber);
-                                    }
+                            stackInput.setText("STACK: " + (stack.size()+1));
 
-                                }
-                                else {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        parseNumber = String.valueOf(lastPopElement);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-                                }
-                            }
-
+                        }
+                        else{
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //5 in my example
+                            double secondLastElement = stack.pop(); //4 in my example
+                            double thirdLastElement = stack.pop(); //3 in my example
+                            double fourthLastElement = stack.pop(); //2 in my example
+                            double fifthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement+secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(fifthLastElement);
+                            stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText(String.valueOf(fifthLastElement));
+                            stackInput.setText("STACK: " + (stack.size()+1));
                         }
 
 
@@ -544,71 +549,78 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        String parseNumber;
 
-                        //we have to stack number from mainInput
-                        //
-
-                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
                         if(stack.size()==0) {
                             firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+                            maininput.setText("");
+                        }
+                        else if(stack.size()==1) {
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop();
+                            double secondLastElement = stack.pop();
+                            double result= lastElement-secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                            firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
                         }
-                        //ELSE DO ADDITION
-                        else {
-                            //pop two elements from stack,add them,parse and set to inputs
+                        else if (stack.size()==2){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //3 in my example
+                            double secondLastElement = stack.pop(); //2 in my example
+                            double thirdLastElement = stack.pop(); //1 in my example
+                            double result= lastElement-secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
-                            double x = Double.parseDouble(maininput.getText().toString());
-                            stack.push(x);
 
-                            double result = stack.sub();
-                            //check if result is integer
-                            if ((result % 1) == 0) {
-                                long resultInt = (long) result;
-                                parseNumber = String.valueOf(resultInt);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            } else {
-                                parseNumber = String.valueOf(result);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            }
-                            //PUTTING LAST POP ELEMENT TO STACK2 ROW
-
-                            //we have to get last pop element from stack and put him into the screen
-                            //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
-                            if (stack.size() == 0) {
-                                firstStackInput.setText("");
-                            } else {
-
-                                //we get lastPopElement, check if its integer and put it to inputs
-                                double lastPopElement = stack.getSecondLastElement();
-                                if((lastPopElement %1)==0)
-                                {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        long tmp = (long) lastPopElement;
-                                        parseNumber = String.valueOf(tmp);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-
-                                }
-                                else {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        parseNumber = String.valueOf(lastPopElement);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-                                }
-                            }
+                            stackInput.setText("STACK: " + (stack.size()+1));
 
                         }
+                        else if (stack.size()==3){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //4 in my example
+                            double secondLastElement = stack.pop(); //3 in my example
+                            double thirdLastElement = stack.pop(); //2 in my example
+                            double fourthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement-secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            stack.push(fourthLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText("");
+
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                        }
+                        else{
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //5 in my example
+                            double secondLastElement = stack.pop(); //4 in my example
+                            double thirdLastElement = stack.pop(); //3 in my example
+                            double fourthLastElement = stack.pop(); //2 in my example
+                            double fifthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement-secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(fifthLastElement);
+                            stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText(String.valueOf(fifthLastElement));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                        }
+
+
+
                     }
                 }
         );
@@ -617,144 +629,78 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        String parseNumber;
 
-                        //we have to stack number from mainInput
-                        //
-
-                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
                         if(stack.size()==0) {
                             firstStackInput.setText("");
-
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+                            maininput.setText("");
                         }
-                        //ELSE DO ADDITION
-                        else {
-                            //pop two elements from stack,add them,parse and set to inputs
-
-                            double x = Double.parseDouble(maininput.getText().toString());
-                            stack.push(x);
-
-                            double result = stack.mul();
-                            //check if result is integer
-                            if ((result % 1) == 0) {
-                                long resultInt = (long) result;
-                                parseNumber = String.valueOf(resultInt);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            } else {
-                                parseNumber = String.valueOf(result);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            }
-                            //PUTTING LAST POP ELEMENT TO STACK2 ROW
-
-                            //we have to get last pop element from stack and put him into the screen
-                            //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
-                            if (stack.size() == 0) {
-                                firstStackInput.setText("");
-                            } else {
-
-                                //we get lastPopElement, check if its integer and put it to inputs
-                                double lastPopElement = stack.getSecondLastElement();
-                                if((lastPopElement %1)==0)
-                                {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        long tmp = (long) lastPopElement;
-                                        parseNumber = String.valueOf(tmp);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-
-                                }
-                                else {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        parseNumber = String.valueOf(lastPopElement);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-        );
-
-        powerButton.setOnClickListener(
-                new Button.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        String parseNumber;
-
-                        //we have to stack number from mainInput
-                        //
-
-                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
-                        if(stack.size()==0) {
+                        else if(stack.size()==1) {
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop();
+                            double secondLastElement = stack.pop();
+                            double result= lastElement*secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stackInput.setText("STACK: " + (stack.size()+1));
                             firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
                         }
-                        //ELSE DO ADDITION
-                        else {
-                            //pop two elements from stack,add them,parse and set to inputs
+                        else if (stack.size()==2){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //3 in my example
+                            double secondLastElement = stack.pop(); //2 in my example
+                            double thirdLastElement = stack.pop(); //1 in my example
+                            double result= lastElement*secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
-                            double x = Double.parseDouble(maininput.getText().toString());
-                            stack.push(x);
 
-                            double result = stack.pow();
-                            //check if result is integer
-                            if ((result % 1) == 0) {
-                               long resultInt = (long) result;
-                                parseNumber = String.valueOf(resultInt);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            } else {
-                                parseNumber = String.valueOf(result);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            }
-                            //PUTTING LAST POP ELEMENT TO STACK2 ROW
-
-                            //we have to get last pop element from stack and put him into the screen
-                            //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
-                            if (stack.size() == 0) {
-                                firstStackInput.setText("");
-                            } else {
-
-                                //we get lastPopElement, check if its integer and put it to inputs
-                                double lastPopElement = stack.getSecondLastElement();
-                                if((lastPopElement %1)==0)
-                                {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        long tmp = (long) lastPopElement;
-                                        parseNumber = String.valueOf(tmp);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-
-                                }
-                                else {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        parseNumber = String.valueOf(lastPopElement);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-                                }
-                            }
+                            stackInput.setText("STACK: " + (stack.size()+1));
 
                         }
+                        else if (stack.size()==3){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //4 in my example
+                            double secondLastElement = stack.pop(); //3 in my example
+                            double thirdLastElement = stack.pop(); //2 in my example
+                            double fourthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement*secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            stack.push(fourthLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText("");
+
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                        }
+                        else{
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //5 in my example
+                            double secondLastElement = stack.pop(); //4 in my example
+                            double thirdLastElement = stack.pop(); //3 in my example
+                            double fourthLastElement = stack.pop(); //2 in my example
+                            double fifthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement*secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(fifthLastElement);
+                            stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText(String.valueOf(fifthLastElement));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                        }
+
+
+
                     }
                 }
         );
@@ -763,71 +709,154 @@ public class MainActivity extends Activity {
                 new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        String parseNumber;
 
-                        //we have to stack number from mainInput
-                        //
-
-                        //FIRST BEFORE ADD ELEMENTS CHECK IF STACK IS EMPTY -> IF ITS EMPTY THAN DONT CHANGE ANTYHING
                         if(stack.size()==0) {
                             firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+                            maininput.setText("");
+                        }
+                        else if(stack.size()==1) {
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop();
+                            double secondLastElement = stack.pop();
+                            double result= lastElement/secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                            firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
                         }
-                        //ELSE DO ADDITION
-                        else {
-                            //pop two elements from stack,add them,parse and set to inputs
+                        else if (stack.size()==2){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //3 in my example
+                            double secondLastElement = stack.pop(); //2 in my example
+                            double thirdLastElement = stack.pop(); //1 in my example
+                            double result= lastElement/secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
 
-                            double x = Double.parseDouble(maininput.getText().toString());
-                            stack.push(x);
 
-                            double result = stack.div();
-                            //check if result is integer
-                            if ((result % 1) == 0) {
-                                long resultInt = (long) result;
-                                parseNumber = String.valueOf(resultInt);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            } else {
-                                parseNumber = String.valueOf(result);
-                                maininput.setText(parseNumber);
-                                stackInput.setText("STACK: " + (stack.size()+1));
-                            }
-                            //PUTTING LAST POP ELEMENT TO STACK2 ROW
-
-                            //we have to get last pop element from stack and put him into the screen
-                            //if stack is empty than set null to STACK2 SCREEEN else just put lastPopElement
-                            if (stack.size() == 0) {
-                                firstStackInput.setText("");
-                            } else {
-
-                                //we get lastPopElement, check if its integer and put it to inputs
-                                double lastPopElement = stack.getSecondLastElement();
-                                if((lastPopElement %1)==0)
-                                {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        long tmp = (long) lastPopElement;
-                                        parseNumber = String.valueOf(tmp);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-
-                                }
-                                else {
-                                    if(stack.isStackIsOver()){
-                                        firstStackInput.setText("");
-                                        stackInput.setText("STACK: 1");
-                                    }
-                                    else {
-                                        parseNumber = String.valueOf(lastPopElement);
-                                        firstStackInput.setText(parseNumber);
-                                    }
-                                }
-                            }
+                            stackInput.setText("STACK: " + (stack.size()+1));
 
                         }
+                        else if (stack.size()==3){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //4 in my example
+                            double secondLastElement = stack.pop(); //3 in my example
+                            double thirdLastElement = stack.pop(); //2 in my example
+                            double fourthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement/secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            stack.push(fourthLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText("");
+
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                        }
+                        else{
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //5 in my example
+                            double secondLastElement = stack.pop(); //4 in my example
+                            double thirdLastElement = stack.pop(); //3 in my example
+                            double fourthLastElement = stack.pop(); //2 in my example
+                            double fifthLastElement = stack.pop(); //1 in my example
+                            double result= lastElement/secondLastElement;
+                            maininput.setText(String.valueOf(result));
+                            stack.push(fifthLastElement);
+                            stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText(String.valueOf(fifthLastElement));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                        }
+
+                    }
+                }
+        );
+
+        powerButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+
+                        if(stack.size()==0) {
+                            firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+                            maininput.setText("");
+                        }
+                        else if(stack.size()==1) {
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop();
+                            double secondLastElement = stack.pop();
+                            double result= Math.pow(secondLastElement,lastElement);
+                            maininput.setText(String.valueOf(result));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                            firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+
+                        }
+                        else if (stack.size()==2){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //3 in my example
+                            double secondLastElement = stack.pop(); //2 in my example
+                            double thirdLastElement = stack.pop(); //1 in my example
+                            double result= Math.pow(secondLastElement,lastElement);
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
+
+
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                        }
+                        else if (stack.size()==3){
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //4 in my example
+                            double secondLastElement = stack.pop(); //3 in my example
+                            double thirdLastElement = stack.pop(); //2 in my example
+                            double fourthLastElement = stack.pop(); //1 in my example
+                            double result= Math.pow(secondLastElement,lastElement);
+                            maininput.setText(String.valueOf(result));
+                            stack.push(thirdLastElement);
+                            stack.push(fourthLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText("");
+
+                            stackInput.setText("STACK: " + (stack.size()+1));
+
+                        }
+                        else{
+                            stack.push(Double.parseDouble(maininput.getText().toString()));
+                            double lastElement  =stack.pop(); //5 in my example
+                            double secondLastElement = stack.pop(); //4 in my example
+                            double thirdLastElement = stack.pop(); //3 in my example
+                            double fourthLastElement = stack.pop(); //2 in my example
+                            double fifthLastElement = stack.pop(); //1 in my example
+                            double result= Math.pow(secondLastElement,lastElement);
+                            maininput.setText(String.valueOf(result));
+                            stack.push(fifthLastElement);
+                            stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
+                            firstStackInput.setText(String.valueOf(thirdLastElement));
+                            secondStackInput.setText(String.valueOf(fourthLastElement));
+                            thirdStackInput.setText(String.valueOf(fifthLastElement));
+                            stackInput.setText("STACK: " + (stack.size()+1));
+                        }
+
                     }
                 }
         );
