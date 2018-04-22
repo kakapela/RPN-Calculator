@@ -349,6 +349,8 @@ public class MainActivity extends Activity {
                             stack.clear();
                             stackInput.setText("STACK: "+(stack.size()+1));
                             firstStackInput.setText("");
+                            secondStackInput.setText("");
+                            thirdStackInput.setText("");
                     }
                 }
         );
@@ -756,7 +758,7 @@ public class MainActivity extends Activity {
                             stack.push(Double.parseDouble(maininput.getText().toString()));
                             double lastElement  =stack.pop();
                             double secondLastElement = stack.pop();
-                            double result= lastElement/secondLastElement;
+                            double result=secondLastElement/lastElement;
                             maininput.setText(String.valueOf(result));
                             stackInput.setText("STACK: " + (stack.size()+1));
                             firstStackInput.setText("");
@@ -769,7 +771,7 @@ public class MainActivity extends Activity {
                             double lastElement  =stack.pop(); //3 in my example
                             double secondLastElement = stack.pop(); //2 in my example
                             double thirdLastElement = stack.pop(); //1 in my example
-                            double result= lastElement/secondLastElement;
+                            double result= secondLastElement/lastElement;
                             maininput.setText(String.valueOf(result));
                             stack.push(thirdLastElement);
                             firstStackInput.setText(String.valueOf(thirdLastElement));
@@ -786,7 +788,7 @@ public class MainActivity extends Activity {
                             double secondLastElement = stack.pop(); //3 in my example
                             double thirdLastElement = stack.pop(); //2 in my example
                             double fourthLastElement = stack.pop(); //1 in my example
-                            double result= lastElement/secondLastElement;
+                            double result= secondLastElement/lastElement;
                             maininput.setText(String.valueOf(result));
                             stack.push(thirdLastElement);
                             stack.push(fourthLastElement);
@@ -804,7 +806,7 @@ public class MainActivity extends Activity {
                             double thirdLastElement = stack.pop(); //3 in my example
                             double fourthLastElement = stack.pop(); //2 in my example
                             double fifthLastElement = stack.pop(); //1 in my example
-                            double result= lastElement/secondLastElement;
+                            double result= secondLastElement/lastElement;
                             maininput.setText(String.valueOf(result));
                             stack.push(fifthLastElement);
                             stack.push(fourthLastElement);
