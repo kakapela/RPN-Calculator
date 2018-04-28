@@ -526,7 +526,7 @@ public class MainActivity extends Activity {
                         }
                         else if (stack.size()==2){
                             stack.push(Double.parseDouble(maininput.getText().toString()));
-                            double lastElement  =stack.pop(); //3 in my example
+                            double lastElement  =stack.pop(); //7 in my example
                             double secondLastElement = stack.pop(); //2 in my example
                             double thirdLastElement = stack.pop(); //1 in my example
                             double result= lastElement+secondLastElement;
@@ -549,8 +549,8 @@ public class MainActivity extends Activity {
                             double fourthLastElement = stack.pop(); //1 in my example
                             double result= lastElement+secondLastElement;
                             maininput.setText(String.valueOf(result));
-                            stack.push(thirdLastElement);
                             stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
                             firstStackInput.setText(String.valueOf(thirdLastElement));
                             secondStackInput.setText(String.valueOf(fourthLastElement));
                             thirdStackInput.setText("");
@@ -630,8 +630,8 @@ public class MainActivity extends Activity {
                             double fourthLastElement = stack.pop(); //1 in my example
                             double result= lastElement-secondLastElement;
                             maininput.setText(String.valueOf(result));
-                            stack.push(thirdLastElement);
                             stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
                             firstStackInput.setText(String.valueOf(thirdLastElement));
                             secondStackInput.setText(String.valueOf(fourthLastElement));
                             thirdStackInput.setText("");
@@ -710,8 +710,8 @@ public class MainActivity extends Activity {
                             double fourthLastElement = stack.pop(); //1 in my example
                             double result= lastElement*secondLastElement;
                             maininput.setText(String.valueOf(result));
-                            stack.push(thirdLastElement);
                             stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
                             firstStackInput.setText(String.valueOf(thirdLastElement));
                             secondStackInput.setText(String.valueOf(fourthLastElement));
                             thirdStackInput.setText("");
@@ -765,6 +765,11 @@ public class MainActivity extends Activity {
                             secondStackInput.setText("");
                             thirdStackInput.setText("");
 
+                            if(maininput.getText().toString().matches("Infinity") || maininput.getText().toString().matches("NaN"))
+                                maininput.setText("Divide by 0!");
+
+
+
                         }
                         else if (stack.size()==2){
                             stack.push(Double.parseDouble(maininput.getText().toString()));
@@ -780,6 +785,8 @@ public class MainActivity extends Activity {
 
 
                             stackInput.setText("STACK: " + (stack.size()+1));
+                            if(maininput.getText().toString().matches("Infinity") || maininput.getText().toString().matches("NaN"))
+                                maininput.setText("Divide by 0!");
 
                         }
                         else if (stack.size()==3){
@@ -790,13 +797,16 @@ public class MainActivity extends Activity {
                             double fourthLastElement = stack.pop(); //1 in my example
                             double result= secondLastElement/lastElement;
                             maininput.setText(String.valueOf(result));
-                            stack.push(thirdLastElement);
                             stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
                             firstStackInput.setText(String.valueOf(thirdLastElement));
                             secondStackInput.setText(String.valueOf(fourthLastElement));
                             thirdStackInput.setText("");
 
                             stackInput.setText("STACK: " + (stack.size()+1));
+                            if(maininput.getText().toString().matches("Infinity") || maininput.getText().toString().matches("NaN"))
+                                maininput.setText("Divide by 0!");
+
 
                         }
                         else{
@@ -815,6 +825,10 @@ public class MainActivity extends Activity {
                             secondStackInput.setText(String.valueOf(fourthLastElement));
                             thirdStackInput.setText(String.valueOf(fifthLastElement));
                             stackInput.setText("STACK: " + (stack.size()+1));
+                            if(maininput.getText().toString().matches("Infinity") || maininput.getText().toString().matches("NaN"))
+                                maininput.setText("Divide by 0!");
+
+
                         }
 
                     }
@@ -868,8 +882,8 @@ public class MainActivity extends Activity {
                             double fourthLastElement = stack.pop(); //1 in my example
                             double result= Math.pow(secondLastElement,lastElement);
                             maininput.setText(String.valueOf(result));
-                            stack.push(thirdLastElement);
                             stack.push(fourthLastElement);
+                            stack.push(thirdLastElement);
                             firstStackInput.setText(String.valueOf(thirdLastElement));
                             secondStackInput.setText(String.valueOf(fourthLastElement));
                             thirdStackInput.setText("");
